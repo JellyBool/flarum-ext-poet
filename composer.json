@@ -1,0 +1,36 @@
+{
+    "name": "jellybool/flarum-ext-poet",
+    "description": "Po.et plugin for Florum.",
+    "type": "flarum-extension",
+    "keywords": ["poet","po.et"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JellyBool",
+            "email": "jellybool@outlook.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/jellybool/flarum-ext-poet/issues",
+        "source": "https://github.com/jellybool/flarum-ext-poet"
+    },
+    "require": {
+        "flarum/core": "^0.1.0-beta.6",
+        "jellybool/po.et" : "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JellyBool\\Poet\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Flarum Poet",
+            "icon": {
+                "name": "fab fa-gg",
+                "backgroundColor": "#ff5722",
+                "color": "#fff"
+            }
+        }
+    }
+}
