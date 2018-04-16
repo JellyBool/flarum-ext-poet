@@ -5,12 +5,12 @@ use Illuminate\Database\Schema\Builder;
 return [
     'up' => function (Builder $schema) {
         $schema->table('discussions', function (Blueprint $table) {
-            $table->string('wokr_id')->nullable();
+            $table->string('work_id')->nullable();
         });
     },
     'down' => function (Builder $schema) {
         $schema->table('discussions', function (Blueprint $table) {
-            $table->dropColumn(['wokr_id']);
+            $table->dropColumn(['work_id']);
         });
     }
 ];
