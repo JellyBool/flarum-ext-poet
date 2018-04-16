@@ -48,7 +48,7 @@ class AddPoet {
             'name'          => $event->discussion->title,
             'datePublished' => $event->discussion->start_time,
             'dateCreated'   => $event->discussion->start_time,
-            'author'        => $event->discussion->actor->username,
+            'author'        => $event->actor->username,
             'tags'          => $tag->name,
             'content'       => $post->content,
         ]);
