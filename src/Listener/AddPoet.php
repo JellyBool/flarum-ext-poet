@@ -2,6 +2,7 @@
 
 namespace JellyBool\Poet\Listener;
 
+use Flarum\Tags\Tag;
 use JellyBool\Poet\Client;
 use JellyBool\Translug\Translug;
 use Flarum\Event\DiscussionWillBeSaved;
@@ -41,19 +42,25 @@ class AddPoet {
     public function timestampOnPoet(DiscussionWillBeSaved $event)
     {
         $poet = $this->getClient();
-        //$tag = $event->discussion->tags()->first();
-        $post = $event->discussion->posts()->first();
 
-        $work = $poet->createWork([
+        $linkage = (array) $event->data['relationships']['tags']['data'];
+
+        $newTagIds = [];
+
+        foreach ($linkage as $link) {
+            $newTagIds[] = (int) $link['id'];
+        }
+
+        $newTags = Tag::whereIn('id', $newTagIds)->get();
+
+       $poet->createWork([
             'name'          => $event->discussion->title,
             'datePublished' => $event->discussion->start_time,
             'dateCreated'   => $event->discussion->start_time,
             'author'        => $event->actor->username,
-            'tags'          => 'General',
-            'content'       => $post->content,
+            'tags'          => $newTags->pluck('name')->implode(','),
+            'content'       => $event->data['attributes']['content'],
         ]);
-
-        \Log::info($work);
     }
 
     /**
