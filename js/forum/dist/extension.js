@@ -13,9 +13,7 @@ System.register('jellybool/poet/main', ['flarum/extend', 'flarum/components/Disc
         execute: function () {
 
             app.initializers.add('jellybool-poet', function () {
-                extend(DiscussionHero.prototype, 'view', function (vdom) {
-                    vdom.children.push('<p><a href="#">Licensed via po.et</a></p>');
-                });
+                // implement ui on discussion page
             });
         }
     };
