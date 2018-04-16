@@ -32,6 +32,10 @@ class AddClientAssets {
             ]);
             $event->addBootstrapper('jellybool/poet/main');
         }
+        if ($event->isForum()) {
+            $event->addAssets(__DIR__.'/../../js/forum/dist/extension.js');
+            $event->addBootstrapper('jellybool/poet/main');
+        }
     }
 
     /**
