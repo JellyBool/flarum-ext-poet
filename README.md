@@ -11,7 +11,7 @@ composer require jellybool/flarum-ext-poet
 
 ### Enter Your API Key When Activate Plugin
 
-> That's All
+> That's All.
 
 ### License
 
