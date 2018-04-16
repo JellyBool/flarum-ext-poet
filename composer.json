@@ -27,9 +27,10 @@
         "flarum-extension": {
             "title": "Flarum Poet",
             "icon": {
-                "name": "fab fa-gg",
-                "backgroundColor": "#ff5722",
-                "color": "#fff"
+                "image": "icon.svg",
+                "backgroundColor": "#222224",
+                "backgroundSize": "cover",
+                "backgroundPosition": "center"
             }
         }
     }
