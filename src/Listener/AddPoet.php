@@ -45,20 +45,20 @@ class AddPoet {
 
         $linkage = (array) $event->data['relationships']['tags']['data'];
 
-        $newTagIds = [];
+        $tagIds = [];
 
         foreach ($linkage as $link) {
-            $newTagIds[] = (int) $link['id'];
+            $tagIds[] = (int) $link['id'];
         }
 
-        $newTags = Tag::whereIn('id', $newTagIds)->get();
+        $tags = Tag::whereIn('id', $tagIds)->get();
 
        $poet->createWork([
             'name'          => $event->discussion->title,
             'datePublished' => $event->discussion->start_time,
             'dateCreated'   => $event->discussion->start_time,
             'author'        => $event->actor->username,
-            'tags'          => $newTags->pluck('name')->implode(','),
+            'tags'          => $tags->pluck('name')->implode(','),
             'content'       => $event->data['attributes']['content'],
         ]);
     }
