@@ -44,7 +44,7 @@ class AddPoet {
         $tag = $event->discussion->tags()->first();
         $post = $event->discussion->posts()->first();
 
-        $poet->createWork([
+        $work = $poet->createWork([
             'name'          => $event->discussion->title,
             'datePublished' => $event->discussion->start_time,
             'dateCreated'   => $event->discussion->start_time,
@@ -52,6 +52,8 @@ class AddPoet {
             'tags'          => $tag->name,
             'content'       => $post->content,
         ]);
+
+        \Log::info($work);
     }
 
     /**
