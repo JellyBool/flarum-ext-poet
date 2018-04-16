@@ -53,7 +53,7 @@ class AddPoet {
 
         $tags = Tag::whereIn('id', $tagIds)->get();
 
-       $poet->createWork([
+       $work = $poet->createWork([
             'name'          => $event->discussion->title,
             'datePublished' => $event->discussion->start_time,
             'dateCreated'   => $event->discussion->start_time,
@@ -61,6 +61,8 @@ class AddPoet {
             'tags'          => $tags->pluck('name')->implode(','),
             'content'       => $event->data['attributes']['content'],
         ]);
+
+        $event->discussion->work_id = $work['workId'];
     }
 
     /**
