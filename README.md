@@ -1,11 +1,17 @@
-# Flarum 中文 URL Slug 插件
+# Flarum Poet Plugin
 
-> 注意，请先到 有道翻译 获取 API Key 和 API Secret，具体可以参考这里：https://github.com/JellyBool/translug
+> Get an API Key First：https://frost.po.et/dashboard
 
-### 安装
+## Usage
+
+### Install with composer
 ```
-composer require jellybool/flarum-ext-slug
+composer require jellybool/flarum-ext-poet
 ```
+
+### Enter Your API Key When Activate Plugin
+
+> That's All
 
 ### License
 
