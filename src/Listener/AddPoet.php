@@ -41,7 +41,7 @@ class AddPoet {
     public function timestampOnPoet(DiscussionWillBeSaved $event)
     {
         $poet = $this->getClient();
-        $tag = $event->discussion->tags()->first();
+        //$tag = $event->discussion->tags()->first();
         $post = $event->discussion->posts()->first();
 
         $work = $poet->createWork([
@@ -49,7 +49,7 @@ class AddPoet {
             'datePublished' => $event->discussion->start_time,
             'dateCreated'   => $event->discussion->start_time,
             'author'        => $event->actor->username,
-            'tags'          => $tag->name,
+            'tags'          => 'General',
             'content'       => $post->content,
         ]);
 
