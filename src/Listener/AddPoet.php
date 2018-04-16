@@ -2,6 +2,7 @@
 
 namespace JellyBool\Poet\Listener;
 
+use JellyBool\Poet\Client;
 use JellyBool\Translug\Translug;
 use Flarum\Event\DiscussionWillBeSaved;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -9,7 +10,7 @@ use Flarum\Settings\SettingsRepositoryInterface;
 
 /**
  * Class AddPoet
- * @package Jellybool\Chinese\Listener
+ * @package Jellybool\Poet\Listener
  */
 class AddPoet {
 
@@ -39,18 +40,25 @@ class AddPoet {
      */
     public function timestampOnPoet(DiscussionWillBeSaved $event)
     {
-        $translator = $this->getTranslator();
-        $slug = $translator->translug($event->discussion->title);
-        $event->discussion->slug = $slug;
+        $poet = $this->getClient();
+        $tag = $event->discussion->tags()->first();
+        $post = $event->discussion->posts()->first();
+
+        $poet->createWork([
+            'name'          => $event->discussion->title,
+            'datePublished' => $event->discussion->start_time,
+            'dateCreated'   => $event->discussion->start_time,
+            'author'        => $event->discussion->actor->username,
+            'tags'          => $tag->name,
+            'content'       => $post->content,
+        ]);
     }
 
     /**
      * @return Translug
      */
-    protected function getTranslator()
+    protected function getClient()
     {
-        return new Translug([
-            'appKey' => $this->settings->get('jellybool-poet.apikey')
-        ]);
+        return new Client($this->settings->get('jellybool-poet.apikey'));
     }
 }
