@@ -55,8 +55,8 @@ class AddPoet {
 
        $work = $poet->createWork([
             'name'          => $event->discussion->title,
-            'datePublished' => $event->discussion->start_time,
-            'dateCreated'   => $event->discussion->start_time,
+            'datePublished' => $event->discussion->start_time->toDateTimeString(),
+            'dateCreated'   => $event->discussion->start_time->toDateTimeString(),
             'author'        => $event->actor->username,
             'tags'          => $tags->pluck('name')->implode(','),
             'content'       => $event->data['attributes']['content'],
